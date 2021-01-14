@@ -106,7 +106,11 @@ ln -s /mnt/mastodon/bin ~/bin
 
 
 ## 5. Build node.js and yarn 
-* Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
+* Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
+```
+sudo su -l mastodon
+schroot -c mastodon64
+```
 
 1. Build node.js (includes NPM)
 
@@ -121,7 +125,7 @@ make install
 
 ```
 
-2. Add the following (under mastodon account, inside or outside of schroot is the same for this) to `~/.profile`
+2. Add the following to `~/.profile`
 
 ```
 export PATH=$HOME/bin/bin:$PATH
