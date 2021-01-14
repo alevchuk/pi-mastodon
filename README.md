@@ -32,18 +32,30 @@ You'll need 64-bit dependency binaries so lets setup schroot
 For account that has `sudo` run:
 ```
 sudo mkdir /mnt/mastodon
+sudo chown -R mastodon /mnt/mastodon
 
 cat << EOF | sudo tee /etc/schroot/chroot.d/mastodon64
 [mastodon64]
 description=builds that need 64-bit environment
 type=directory
-directory=/mnt/mastodon
+directory=/mnt/mastodon/pi64
 users=mastodon
 root-groups=root
 profile=desktop
 personality=linux
 preserve-environment=true
 EOF
+
+
+
+sudo debootstrap --arch arm64 /mnt/mastodon/pi64
+sudo schroot -c mastodon64 -- apt install -y mesa-utils sudo
+
+sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/src
+sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/gocode
+sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
+
+sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
 ## Build Mastodone
