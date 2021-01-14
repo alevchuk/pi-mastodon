@@ -109,7 +109,7 @@ cd ~/src/node
 git fetch
 git checkout $(git tag | grep v12 | sort -V | tail -n1)  # latest minor version of 12
 ./configure --prefix $HOME/bin
-make
+make  # negtive (-): this will take all day; postitive (+): building from source has transparency advantages
 make install
 
 ```
