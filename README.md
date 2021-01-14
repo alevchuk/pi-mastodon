@@ -10,7 +10,7 @@ Table of contents
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
   * [4. Setup account and schroot](#4-setup-account-and-schroot)
-  * [5. Build node.js and yarn ](#ds)
+  * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
   * [6. Build Mastodon](#adsf)
  
 ## 1. Get hardware
