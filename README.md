@@ -49,7 +49,9 @@ EOF
 
 
 sudo debootstrap --arch arm64 buster /mnt/mastodon/pi64
-sudo schroot -c mastodon64 -- apt install -y sudo
+
+sudo schroot -c mastodon64 -- apt update
+sudo schroot -c mastodon64 -- apt upgrade -y
 
 sudo mkdir -p /mnt/mastodon/pi64/mnt/mastodon
 sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/src
