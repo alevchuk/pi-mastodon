@@ -6,8 +6,8 @@ This starts of similar to official [Mastodon instructions]( https://docs.joinmas
 Table of contents
 =================
 
-  * [1. Get hardware](#1--get-hardware)
-  * [Hardware](#hardware)
+  * [1. Get hardware](#1-get-hardware)
+  * [2. Install prereqisits and get 64-bit environment](#2-install-prereqisits-and-get-64-bit-environment)
   * [Operating System](#operating-system)
 
 ## 1. Get hardware
