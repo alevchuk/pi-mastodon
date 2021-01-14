@@ -7,9 +7,9 @@ Table of contents
 =================
 
   * [1. Get hardware](#1-get-hardware)
-  * [2. Install prereqisits and get 64-bit environment](#2-install-prereqisits-and-get-64-bit-environment)
-  * [Operating System](#operating-system)
-
+  * [2. Install operating system and check temperature](#operating-system)
+  * [3. Install prereqisits and get 64-bit environment](#2-install-prereqisits-and-get-64-bit-environment)
+  
 ## 1. Get hardware
 
 The powerful Pi 4 with plenty of RAM removing the need for swap.
@@ -23,13 +23,13 @@ Total **296 USD** as of 2020-12-09
 
 If you want a Raid mirror for data protection follow https://github.com/alevchuk/minibank/blob/first/README.md#hardware
 
-## Install operating system and check temperature
+## 2. Install operating system and check temperature
 
 1. https://github.com/alevchuk/minibank/blob/first/README.md#operating-system
 2. https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login
 3. https://github.com/alevchuk/minibank/blob/first/README.md#heat
 
-## 2. Install prereqisits and get 64-bit environment
+## 3. Install prereqisits and get 64-bit environment
 
 You'll need 64-bit dependency binaries so lets setup schroot
 
