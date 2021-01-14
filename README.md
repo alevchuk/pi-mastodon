@@ -78,7 +78,7 @@ sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
 3. Install Mastodon dependencies
 ```
 sudo schroot -c pi64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git-core \
-  g++ libprotobuf-dev protobuf-compiler pkg-config nodejs gcc autoconf \
+  g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
   bison build-essential libssl-dev libyaml-dev libreadline6-dev \
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
   nginx redis-server redis-tools postgresql postgresql-contrib \
