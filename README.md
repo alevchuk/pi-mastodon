@@ -1,6 +1,29 @@
 # ln-mastodon
 Mastodon on Lightning
 
+## Get hardware
+
+The powerful Pi 4 with plenty of RAM removing the need for swap.
+
+Total **296 USD** as of 2020-12-09
+
+* Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
+* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
+* Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
+* Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
+
+If you want a Raid mirror for data protection follow https://github.com/alevchuk/minibank/blob/first/README.md#hardware
+
+# Install operating system and check temperature
+
+1. https://github.com/alevchuk/minibank/blob/first/README.md#operating-system
+2. https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login
+3. https://github.com/alevchuk/minibank/blob/first/README.md#heat
+
+## Install prereqisits
+```
+sudo apt install -y debootstrap schroot
+```
 
 ## Build Mastodone
 
