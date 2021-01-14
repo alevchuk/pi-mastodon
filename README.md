@@ -34,13 +34,13 @@ make install
 
 ```
 
-Install Yarn:
+5. Install Yarn:
 ```
 npm install -g yarn
 ```
 
 
-5. Get source code:
+6. Get source code:
 ```
 mkdir ~/src
 git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
