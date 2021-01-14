@@ -91,7 +91,8 @@ sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
   nginx redis-server redis-tools postgresql postgresql-contrib \
   certbot python-certbot-nginx yarn libidn11-dev libicu-dev libjemalloc-dev \
-  python3.7 python3-distutils
+  python3.7 python3-distutils \
+  curl
 ```
 
 4. Setup symlinks
@@ -166,4 +167,10 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile
 echo 'eval "$(rbenv init -)"' >> ~/.profile
 . ~/.profile
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
+
+3. Install ruby
+```
+RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.7.2
+rbenv global 2.7.2
 ```
