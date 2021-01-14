@@ -77,12 +77,13 @@ sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
 
 3. Install Mastodon dependencies
 ```
-sudo schroot -c pi64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git \
+sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git \
   g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
   bison build-essential libssl-dev libyaml-dev libreadline6-dev \
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
   nginx redis-server redis-tools postgresql postgresql-contrib \
-  certbot python-certbot-nginx yarn libidn11-dev libicu-dev libjemalloc-dev
+  certbot python-certbot-nginx yarn libidn11-dev libicu-dev libjemalloc-dev \
+  python3.7 python3-distutils
 ```
 
 
