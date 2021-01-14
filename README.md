@@ -63,7 +63,7 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## Build Mastodone
+## Setup server
 
 This is similar to https://docs.joinmastodon.org/admin/install/ - yet more paranoid
 
@@ -98,10 +98,10 @@ ln -s /mnt/mastodon/bin ~/bin
 ```
 
 
-4. Build node.js and yarn 
+## Build node.js and yarn 
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
-4.1. Build node.js (includes NPM)
+1. Build node.js (includes NPM)
 
 ```
 git clone https://github.com/nodejs/node.git ~/src/node
@@ -114,13 +114,15 @@ make install
 
 ```
 
-4.2. Install Yarn:
+2. Install Yarn:
 ```
 npm install -g yarn
 ```
 
 
-5. Get source code:
+## Build Mastodone
+
+1. Get source code:
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
 ```
