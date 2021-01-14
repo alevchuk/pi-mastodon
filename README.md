@@ -10,6 +10,8 @@ Table of contents
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
   * [4. Setup account and schroot](#4-setup-account-and-schroot)
+  * [5. Build node.js and yarn ](#ds)
+  * [6. Build Mastodon](#adsf)
  
 ## 1. Get hardware
 
@@ -103,7 +105,7 @@ ln -s /mnt/mastodon/bin ~/bin
 ```
 
 
-## 4. Build node.js and yarn 
+## 5. Build node.js and yarn 
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
 1. Build node.js (includes NPM)
@@ -125,7 +127,7 @@ npm install -g yarn
 ```
 
 
-## 5. Build Mastodon
+## 6. Build Mastodon
 
 1. Get source code:
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
