@@ -12,6 +12,7 @@ Table of contents
   * [4. Setup account and schroot](#4-setup-account-and-schroot)
   * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
   * [6. Install Mastodon](#6-install-mastodon)
+  * [7. Install PostgreSQL](#7-install-postgresql)
  
 ## 1. Get hardware
 
@@ -90,7 +91,7 @@ sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml
   g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
   bison build-essential libssl-dev libyaml-dev libreadline6-dev \
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
-  nginx redis-server redis-tools postgresql postgresql-contrib \
+  nginx redis-server redis-tools \
   certbot python-certbot-nginx yarn libidn11-dev libicu-dev libjemalloc-dev \
   python3.7 python3-distutils \
   curl
@@ -190,4 +191,12 @@ exit  # or press Ctrl-d
 6. Return to admin user:
 ```
 exit  # or press Ctrl-d
+```
+
+
+## 7. Install PostgreSQL
+
+
+```
+sudo apt install postgresql postgresql-contrib
 ```
