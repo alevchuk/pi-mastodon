@@ -121,6 +121,19 @@ make install
 
 ```
 
+2. Add the following (under mastodon account, inside or outside of schroot is the same for this) to `~/.profile`
+
+```
+export PATH=$HOME/bin/bin:$PATH
+
+```
+
+Load ~/.profile
+```
+. ~/.profile
+
+```
+
 2. Install Yarn:
 ```
 npm install -g yarn
