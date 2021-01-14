@@ -174,3 +174,13 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.7.2
 rbenv global 2.7.2
 ```
+
+4. Install bundler
+```
+gem install bundler --no-document
+```
+
+5. Return to admin user:
+```
+exit  # or press Ctrl-d
+```
