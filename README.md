@@ -19,4 +19,9 @@ sudo adduser --disabled-password mastodo  # when prompted press and hold Enter
 sudo su -l mastodon
 ```
 
-
+4. Get source code:
+```
+mkdir ~/src
+git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
+git checkout v3.3.0
+```
