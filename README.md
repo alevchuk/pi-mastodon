@@ -19,7 +19,28 @@ sudo adduser --disabled-password mastodo  # when prompted press and hold Enter
 sudo su -l mastodon
 ```
 
-4. Get source code:
+4. Build node.js and yarn
+Build node.js (includes NPM)
+
+```
+mkdir ~/src
+git clone https://github.com/nodejs/node.git ~/src/node
+cd ~/src/node
+git fetch
+git checkout v13.7.0  # version higher then this will not build on the 32-bit rasbian
+./configure --prefix $HOME/bin
+make
+make install
+
+```
+
+Install Yarn:
+```
+npm install -g yarn
+```
+
+
+5. Get source code:
 ```
 mkdir ~/src
 git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
