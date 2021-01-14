@@ -25,9 +25,30 @@ If you want a Raid mirror for data protection follow https://github.com/alevchuk
 sudo apt install -y debootstrap schroot
 ```
 
+## Get 64-bit environment
+
+You'll need 64-bit dependency binaries so lets setup schroot
+
+For account that has `sudo` run:
+```
+sudo mkdir /mnt/mastodon
+
+cat << EOF | sudo tee /etc/schroot/chroot.d/mastodon64
+[mastodon64]
+description=builds that need 64-bit environment
+type=directory
+directory=/mnt/mastodon
+users=mastodon
+root-groups=root
+profile=desktop
+personality=linux
+preserve-environment=true
+EOF
+```
+
 ## Build Mastodone
 
-Similar to https://docs.joinmastodon.org/admin/install/ - yet more paranoid
+This is similar to https://docs.joinmastodon.org/admin/install/ - yet more paranoid
 
 1. Get a Pi and Setup network:
 https://github.com/alevchuk/minibank/blob/first/README.md#network
