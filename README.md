@@ -49,7 +49,7 @@ EOF
 
 
 sudo debootstrap --arch arm64 buster /mnt/mastodon/pi64
-sudo schroot -c mastodon64 -- apt install -y mesa-utils sudo
+sudo schroot -c mastodon64 -- apt install -y sudo
 
 sudo mkdir -p /mnt/mastodon/pi64/mnt/mastodon
 sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/src
