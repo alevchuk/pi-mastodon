@@ -1,7 +1,9 @@
 # ln-mastodon
 Mastodon on Lightning
 
-## Get hardware
+This starts of similar to official [Mastodon instructions]( https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
+
+## 1. Get hardware
 
 The powerful Pi 4 with plenty of RAM removing the need for swap.
 
@@ -14,22 +16,22 @@ Total **296 USD** as of 2020-12-09
 
 If you want a Raid mirror for data protection follow https://github.com/alevchuk/minibank/blob/first/README.md#hardware
 
-# Install operating system and check temperature
+## Install operating system and check temperature
 
 1. https://github.com/alevchuk/minibank/blob/first/README.md#operating-system
 2. https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login
 3. https://github.com/alevchuk/minibank/blob/first/README.md#heat
 
-## Install prereqisits
+## 2. Install prereqisits and get 64-bit environment
+
+You'll need 64-bit dependency binaries so lets setup schroot
+
+1. Install debootstrap and schroot
 ```
 sudo apt install -y debootstrap schroot
 ```
 
-## Get 64-bit environment
-
-You'll need 64-bit dependency binaries so lets setup schroot
-
-For account that has `sudo` run:
+2. Form "admin" account (that has `sudo`) run:
 ```
 sudo mkdir /mnt/mastodon
 sudo chown -R mastodon /mnt/mastodon
@@ -46,8 +48,6 @@ personality=linux
 preserve-environment=true
 EOF
 
-
-
 sudo debootstrap --arch arm64 buster /mnt/mastodon/pi64
 
 sudo schroot -c mastodon64 -- apt update
@@ -63,9 +63,7 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## Setup server
-
-This is similar to https://docs.joinmastodon.org/admin/install/ - yet more paranoid
+## 3. Setup server
 
 1. Get a Pi and Setup network:
 https://github.com/alevchuk/minibank/blob/first/README.md#network
@@ -86,7 +84,6 @@ sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml
   python3.7 python3-distutils
 ```
 
-
 4. Setup symlinks
 ```
 sudo su -l mastodon
@@ -98,7 +95,7 @@ ln -s /mnt/mastodon/bin ~/bin
 ```
 
 
-## Build node.js and yarn 
+## 4. Build node.js and yarn 
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
 1. Build node.js (includes NPM)
@@ -120,7 +117,7 @@ npm install -g yarn
 ```
 
 
-## Build Mastodone
+## 5. Build Mastodone
 
 1. Get source code:
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
