@@ -7,8 +7,8 @@ Table of contents
 =================
 
   * [1. Get hardware](#1-get-hardware)
-  * [2. Install operating system and check temperature](#operating-system)
-  * [3. Install prereqisits and get 64-bit environment](#2-install-prereqisits-and-get-64-bit-environment)
+  * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
+  * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-environment)
   
 ## 1. Get hardware
 
