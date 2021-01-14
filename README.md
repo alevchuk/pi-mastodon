@@ -196,7 +196,32 @@ exit  # or press Ctrl-d
 
 ## 7. Install PostgreSQL
 
-
+1. Install default PostgreSQL version 11:
 ```
 sudo apt install postgresql postgresql-contrib
+```
+
+2. Get PGTune parameters for you're RAM / Cores 
+https://pgtune.leopard.in.ua/#/ (put PG Version 11)
+
+3. Add the tune parameters at the end of:
+```
+sudo vi /etc/postgresql/11/main/postgresql.conf
+```
+
+4. Restart PstgreSQL
+```
+sudo systemctl restart postgresql
+```
+
+5. Add DB user:
+
+```
+sudo -u postgres psql
+```
+
+and when prompted, paste the following and press Enter:
+```
+CREATE USER mastodon CREATEDB;
+\q
 ```
