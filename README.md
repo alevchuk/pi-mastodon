@@ -8,8 +8,9 @@ Table of contents
 
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
-  * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-environment)
-  
+  * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
+  * [4. Setup account and schroot](#4-setup-account-and-schroot)
+ 
 ## 1. Get hardware
 
 The powerful Pi 4 with plenty of RAM removing the need for swap.
@@ -29,7 +30,7 @@ If you want a Raid mirror for data protection follow https://github.com/alevchuk
 2. https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login
 3. https://github.com/alevchuk/minibank/blob/first/README.md#heat
 
-## 3. Install prereqisits and get 64-bit environment
+## 3. Install prereqisits and get 64-bit capability
 
 You'll need 64-bit dependency binaries so lets setup schroot
 
@@ -70,7 +71,7 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## 3. Setup account and schroot
+## 4. Setup account and schroot
 
 1. Get a Pi and Setup network:
 https://github.com/alevchuk/minibank/blob/first/README.md#network
