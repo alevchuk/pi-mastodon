@@ -70,7 +70,7 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## 3. Setup server
+## 3. Setup account and schroot
 
 1. Get a Pi and Setup network:
 https://github.com/alevchuk/minibank/blob/first/README.md#network
