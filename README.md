@@ -3,6 +3,13 @@ Mastodon on Lightning
 
 This starts of similar to official [Mastodon instructions]( https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
 
+Table of contents
+=================
+
+  * [1. Get hardware](#1--get-hardware)
+  * [Hardware](#hardware)
+  * [Operating System](#operating-system)
+
 ## 1. Get hardware
 
 The powerful Pi 4 with plenty of RAM removing the need for swap.
