@@ -69,6 +69,7 @@ sudo mkdir -p /mnt/mastodon/pi64/mnt/mastodon
 sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/src
 sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/gocode
 sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/bin
+sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/live
 
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
@@ -103,6 +104,7 @@ schroot -c mastodon64
 ln -s /mnt/mastodon/src ~/src
 ln -s /mnt/mastodon/gocode ~/gocode
 ln -s /mnt/mastodon/bin ~/bin
+ln -s /mnt/mastodon/live ~/live
 ```
 
 
@@ -152,8 +154,8 @@ npm install -g yarn
 
 ```
 mkdir ~/src
-git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
-cd ~/src/mastodon
+git clone https://github.com/tootsuite/mastodon.git ~/live
+cd ~/live
 git fetch
 git checkout $(git tag | grep v3.3 | sort -V | tail -n1)  # latest minor version of v3.3
 ```
