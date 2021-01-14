@@ -182,7 +182,12 @@ rbenv global 2.7.2
 gem install bundler --no-document
 ```
 
-5. Return to admin user:
+5. Exist out of schroot
+```
+exit  # or press Ctrl-d
+```
+
+6. Return to admin user:
 ```
 exit  # or press Ctrl-d
 ```
