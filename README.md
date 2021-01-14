@@ -1,7 +1,7 @@
 # ln-mastodon
 Mastodon on Lightning
 
-This starts of similar to official [Mastodon instructions]( https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
+Based to official [Mastodon instructions]( https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
 
 Table of contents
 =================
