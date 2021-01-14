@@ -77,7 +77,7 @@ sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
 
 3. Install Mastodon dependencies
 ```
-sudo schroot -c pi64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git-core \
+sudo schroot -c pi64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git \
   g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
   bison build-essential libssl-dev libyaml-dev libreadline6-dev \
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
@@ -106,7 +106,7 @@ ln -s /mnt/mastodon/bin ~/bin
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git fetch
-git checkout v13.7.0  # version higher then this will not build on the 32-bit rasbian
+git checkout $(git tag | grep v12 | sort -V | tail -n1)  # latest minor version of 12
 ./configure --prefix $HOME/bin
 make
 make install
