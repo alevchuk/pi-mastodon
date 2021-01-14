@@ -73,13 +73,22 @@ https://github.com/alevchuk/minibank/blob/first/README.md#network
 sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
 ```
 
-3. Log-in as Mastodon:
+
+
+3. Setup symlinks
 ```
 sudo su -l mastodon
 schroot -c mastodon64
+
+ln -s /mnt/mastodon/src ~/src
+ln -s /mnt/mastodon/gocode ~/gocode
+ln -s /mnt/mastodon/bin ~/bin
 ```
 
-4. Build node.js and yarn
+
+4. Build node.js and yarn 
+* Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
+
 Build node.js (includes NPM)
 
 ```
