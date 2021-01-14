@@ -152,5 +152,6 @@ npm install -g yarn
 ```
 mkdir ~/src
 git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
-git checkout v3.3.0
+cd ~/src/mastodon
+git checkout $(git tag | grep v3.3 | sort -V | tail -n1)  # latest minor version of v3.3
 ```
