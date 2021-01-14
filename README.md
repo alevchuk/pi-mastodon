@@ -117,7 +117,7 @@ npm install -g yarn
 ```
 
 
-## 5. Build Mastodone
+## 5. Build Mastodon
 
 1. Get source code:
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
