@@ -1,7 +1,7 @@
 # ln-mastodon
 Mastodon on Lightning
 
-Based to official [Mastodon instructions]( https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
+Based to official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
 
 Table of contents
 =================
@@ -146,12 +146,24 @@ npm install -g yarn
 
 ## 6. Build Mastodon
 
-1. Get source code:
+1. Get Mastodon source code:
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
 ```
 mkdir ~/src
 git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
 cd ~/src/mastodon
+git fetch
 git checkout $(git tag | grep v3.3 | sort -V | tail -n1)  # latest minor version of v3.3
+```
+
+2. Install rbenv and rbenv-build:
+
+```
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+cd ~/.rbenv && src/configure && make -C src
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec bash
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
