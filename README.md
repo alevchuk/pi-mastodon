@@ -89,10 +89,9 @@ ln -s /mnt/mastodon/bin ~/bin
 4. Build node.js and yarn 
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
-Build node.js (includes NPM)
+4.1. Build node.js (includes NPM)
 
 ```
-mkdir ~/src
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git fetch
@@ -103,13 +102,15 @@ make install
 
 ```
 
-5. Install Yarn:
+4.2. Install Yarn:
 ```
 npm install -g yarn
 ```
 
 
-6. Get source code:
+5. Get source code:
+* Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
+
 ```
 mkdir ~/src
 git clone https://github.com/tootsuite/mastodon.git ~/src/mastodon
