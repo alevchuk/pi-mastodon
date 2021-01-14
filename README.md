@@ -14,7 +14,7 @@ Table of contents
 
 The powerful Pi 4 with plenty of RAM removing the need for swap.
 
-Total **296 USD** as of 2020-12-09
+Total **126 USD** as of 2021-01-14
 
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
