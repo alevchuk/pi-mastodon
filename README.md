@@ -91,7 +91,7 @@ sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml
   g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
   bison build-essential libssl-dev libyaml-dev libreadline6-dev \
   zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev \
-  nginx redis-server redis-tools \
+  redis-tools \
   certbot python-certbot-nginx yarn libidn11-dev libicu-dev libjemalloc-dev \
   python3.7 python3-distutils \
   curl
@@ -225,8 +225,15 @@ CREATE USER mastodon CREATEDB;
 \q
 ```
 
+## 8. Install Redis
 
-## 8. Install dependencies written in Ruby and JavaScript
+1. Install default system Redis:
+```
+sudo apt install redis-server
+```
+
+
+## 9. Install dependencies written in Ruby and JavaScript
 * Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
 ```
 sudo su -l mastodon
@@ -238,6 +245,6 @@ cd ~/live
 
 bundle config deployment 'true'
 bundle config without 'development test'
-bundle install -j$(getconf _NPROCESSORS_ONLN)
+bundle install -j$(getconf _NPROCESSORS_ONLN)  # this will take a long time and interactively ask questions
 yarn install --pure-lockfile
 ```
