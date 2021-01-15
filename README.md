@@ -224,3 +224,20 @@ and when prompted, paste the following and press Enter:
 CREATE USER mastodon CREATEDB;
 \q
 ```
+
+
+## 8. Install dependencies written in Ruby and JavaScript
+* Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
+```
+sudo su -l mastodon
+schroot -c mastodon64
+```
+
+```
+cd ~/live
+
+bundle config deployment 'true'
+bundle config without 'development test'
+bundle install -j$(getconf _NPROCESSORS_ONLN)
+yarn install --pure-lockfile
+```
