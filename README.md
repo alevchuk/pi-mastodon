@@ -154,7 +154,6 @@ npm install -g yarn
 * Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
 
 ```
-mkdir ~/live
 git clone https://github.com/tootsuite/mastodon.git ~/live
 cd ~/live
 git fetch
