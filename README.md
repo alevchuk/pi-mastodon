@@ -11,8 +11,9 @@ Table of contents
   * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
   * [4. Setup account and schroot](#4-setup-account-and-schroot)
   * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
-  * [6. Install Mastodon](#6-install-mastodon)
+  * [6. Install Ruby and Bundler](#6-install-ruby-and-bundler)
   * [7. Install PostgreSQL](#7-install-postgresql)
+  * [8. Setup Mastodon](#8-setup-mastodon)
  
 ## 1. Get hardware
 
