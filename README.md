@@ -240,11 +240,19 @@ sudo su -l mastodon
 schroot -c mastodon64
 ```
 
+1. Install bundle
 ```
 cd ~/live
 
 bundle config deployment 'true'
 bundle config without 'development test'
-bundle install -j$(getconf _NPROCESSORS_ONLN)  # this will take a long time and interactively ask questions
+bundle install -j$(getconf _NPROCESSORS_ONLN) 
 yarn install --pure-lockfile
+```
+
+2. Run the setup wizard
+* this will take a long time and interactively ask questions
+```
+RAILS_ENV=production bundle exec rake mastodon:setup
+
 ```
