@@ -148,19 +148,9 @@ npm install -g yarn
 ```
 
 
-## 6. Install Mastodon
+## 6. Install Ruby and Bundler
 
-1. Get Mastodon source code:
-* Prerequisit: you need to be logged in as "mastodon" and in `schroot -c mastodon64`
-
-```
-git clone https://github.com/tootsuite/mastodon.git ~/live
-cd ~/live
-git fetch
-git checkout $(git tag | grep v3.3 | sort -V | tail -n1)  # latest minor version of v3.3
-```
-
-2. Install rbenv and rbenv-build:
+1. Install rbenv and rbenv-build:
 
 ```
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -171,23 +161,23 @@ echo 'eval "$(rbenv init -)"' >> ~/.profile
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
-3. Install ruby
+2. Install ruby
 ```
 RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.7.2
 rbenv global 2.7.2
 ```
 
-4. Install bundler
+3. Install bundler
 ```
 gem install bundler --no-document
 ```
 
-5. Exist out of schroot
+4. Exist out of schroot
 ```
 exit  # or press Ctrl-d
 ```
 
-6. Return to admin user:
+5. Return to admin user:
 ```
 exit  # or press Ctrl-d
 ```
@@ -233,14 +223,23 @@ sudo apt install redis-server
 ```
 
 
-## 9. Install dependencies written in Ruby and JavaScript
+## 9. Setup Mastodon
 * Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
 ```
 sudo su -l mastodon
 schroot -c mastodon64
 ```
 
-1. Install bundle
+1. Get Mastodon source code:
+```
+git clone https://github.com/tootsuite/mastodon.git ~/live
+cd ~/live
+git fetch
+git checkout $(git tag | grep v3.3 | sort -V | tail -n1)  # latest minor version of v3.3
+```
+
+
+2. Install Ruby and JavaScript dependencies
 ```
 cd ~/live
 
@@ -250,7 +249,7 @@ bundle install -j$(getconf _NPROCESSORS_ONLN)
 yarn install --pure-lockfile
 ```
 
-2. Run the setup wizard
+3. Run the setup wizard
 * this will take a long time and interactively ask questions
 ```
 RAILS_ENV=production bundle exec rake mastodon:setup
