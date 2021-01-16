@@ -254,6 +254,6 @@ yarn install --pure-lockfile
 3. Run the setup wizard
 * this will take a long time and interactively ask questions
 ```
-RAILS_ENV=production bundle exec rake mastodon:setup
+RAILS_ENV=production bundle exec rake mastodon:setup  # if you are re-running this command AND want to destory current data and create an empty database, add DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 
 ```
