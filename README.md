@@ -13,7 +13,8 @@ Table of contents
   * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
   * [6. Install Ruby and Bundler](#6-install-ruby-and-bundler)
   * [7. Install PostgreSQL](#7-install-postgresql)
-  * [8. Setup Mastodon](#8-setup-mastodon)
+  * [8. Install Redis](#8-install-redis)
+  * [9. Setup Mastodon](#9-setup-mastodon)
  
 ## 1. Get hardware
 
