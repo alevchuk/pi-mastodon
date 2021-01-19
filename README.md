@@ -18,8 +18,6 @@ Table of contents
  
 ## 1. Get hardware
 
-The powerful Pi 4 with plenty of RAM removing the need for swap.
-
 Total **91 USD** as of 2021-01-19
 
 * Pi 4 kit (2GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 2GB RAM](https://camelcamelcamel.com/product/B07TYK4RL8)
