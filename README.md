@@ -29,9 +29,10 @@ If you want a Raid mirror for data protection follow https://github.com/alevchuk
 
 ## 2. Install operating system and check temperature
 
-1. https://github.com/alevchuk/minibank/blob/first/README.md#operating-system
-2. https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login
-3. https://github.com/alevchuk/minibank/blob/first/README.md#heat
+1. [Operating System](https://github.com/alevchuk/minibank/blob/first/README.md#operating-system)
+2. [First time login](https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login)
+3. [Heat](https://github.com/alevchuk/minibank/blob/first/README.md#heat)
+4. [Netwrok](https://github.com/alevchuk/minibank/blob/first/README.md#network)
 
 ## 3. Install prereqisits and get 64-bit capability
 
