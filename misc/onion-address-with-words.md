@@ -21,7 +21,7 @@ HiddenServicePort 80 127.0.0.1:80
 
 3. Run
 ```
-grep '....' /usr/share/dict/words > /tmp/words  # 4 letter words, anything larger will take a very long time
+grep '....' /usr/share/dict/words > /tmp/words  # words with 4 or more letters, anything larger will take a very long time
 while :; do sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname | sed 's/.onion$//' | grep -Ff/tmp/words && break; done
 
 ```
