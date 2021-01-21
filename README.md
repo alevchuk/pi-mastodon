@@ -533,13 +533,32 @@ server {
 }
 ```
 
-3. Enable config:
+3. Edit top-level config:
+```
+sudo vi /etc/nginx/nginx.conf
+
+```
+
+Add:
+```
+    server_names_hash_bucket_size 65;
+    
+```
+
+And comment out all setting that start with "ssl":
+```
+
+    #ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    #ssl_prefer_server_ciphers on;
+```
+
+4. Enable config:
 ```
 sudo ln -s /etc/nginx/sites-available/mastodon /etc/nginx/sites-enabled/mastodon
 
 ```
 
-4. Restart nginx:
+5. Restart nginx:
 ```
 sudo systemctl restart nginx
 
