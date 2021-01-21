@@ -386,6 +386,7 @@ RAILS_ENV=production bundle exec rake mastodon:setup  # if you are re-running th
 ```
 sudo su -l mastodon
 schroot -c mastodon64
+cd ~/live
 RAILS_ENV=production ./bin/tootctl accounts create admin2 --role admin --email admin2@mast.com
 
 ```
@@ -401,3 +402,25 @@ STREAMING_API_BASE_URL=http://a1b2c3.onion
 CDN_HOST=http://a1b2c3.onion
 ```
 * replace "a1b2c3.onion" with the onion address you generated earlier
+
+6. Start 3 mastodon services. Later, we'll setup these as systemd services that get restarted automatically if they crash. Yet, at this stage you'll need to learn how to use [multiple virtual windowns in Screen](https://www.youtube.com/watch?v=HomIzLB-HBc) and run all 3 services in parallel:
+
+```
+# in screen window 1
+sudo su -l mastodon
+schroot -c mastodon64
+cd ~/live
+HTTPS_KEY=off SERVER_PROTOCOL=http PORT=3001 RAILS_ENV=production bundle exec rails s
+
+# in sceen window 2
+sudo su -l mastodon
+schroot -c mastodon64
+cd ~/live
+HTTPS_KEY=off SERVER_PROTOCOL=http RAILS_ENV=production DB_POOL=25 MALLOC_ARENA_MAX=2 /home/mastodon/.rbenv/shims/bundle exec sidekiq -c 25
+
+# in screen window 3
+sudo su -l mastodon
+schroot -c mastodon64
+cd ~/live
+HTTPS_KEY=off SERVER_PROTOCOL=http PORT=4000 NODE_ENV=production /home/mastodon/bin/bin/node ./streaming
+```
