@@ -205,7 +205,9 @@ sudo schroot -c mastodon64
 
 ```
 
-and go thru [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable inside the schroot. Yet, skip "Name your Pi" and "Timezone"
+and go thru [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable inside the schroot. Yet:
+* Skip "Name your Pi" and "Timezone"
+* Don't include `sudo` in the commands
 
 
 ## 6. Build node.js and yarn 
