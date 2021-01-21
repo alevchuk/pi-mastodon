@@ -204,15 +204,22 @@ sudo vi /etc/postgresql/11/main/postgresql.conf
 sudo systemctl restart postgresql
 ```
 
-5. Add DB user:
+5. Generate a random DB_PASSWORD:
+```
+openssl rand -base64 32 | sed 's/+//g' | tr '[A-Z]' '[a-z]' | tr -cd '[0-9a-z\n]'
+```
+
+6. Add DB user:
 
 ```
 sudo -u postgres psql
 ```
 
-and when prompted, paste the following and press Enter:
+and when prompted, paste the following line-by-line:
+* replace DB_PASSWORD with the password you generated in setp 5
 ```
 CREATE USER mastodon CREATEDB;
+ALTER USER mastodon PASSWORD 'DB_PASSWORD';
 \q
 ```
 
