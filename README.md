@@ -319,3 +319,11 @@ RAILS_ENV=production bundle exec rake mastodon:setup  # if you are re-running th
 * press Enter for many email related questions
 * Send a test e-mail with this configuration right now? no
 * press Enter for the rest of the questions
+
+4. Write down your admin E-mail and password. Ok if you loose it - it's easy to re-create like this:
+```
+sudo su -l mastodon
+schroot -c mastodon64
+RAILS_ENV=production ./bin/tootctl accounts create admin2 --role admin --email admin2@mast.com
+
+```
