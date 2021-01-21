@@ -45,7 +45,12 @@ You'll need 64-bit dependency binaries so lets setup schroot
 sudo apt install -y debootstrap schroot
 ```
 
-2. Form "admin" account (that has `sudo`) run:
+2. Create mastodon user:
+```
+sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
+```
+
+3. Form "admin" account (that has `sudo`) run:
 ```
 sudo mkdir /mnt/mastodon
 sudo chown -R mastodon /mnt/mastodon
@@ -78,17 +83,9 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/live
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## 4. Setup account and schroot
+## 4. Install Mastodon dependencies inside schroot
 
-1. Get a Pi and Setup network:
-https://github.com/alevchuk/minibank/blob/first/README.md#network
-
-2. Create user:
-```
-sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
-```
-
-3. Install Mastodon dependencies
+1. From "admin" account run
 ```
 sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git \
   g++ libprotobuf-dev protobuf-compiler pkg-config gcc autoconf \
