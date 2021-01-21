@@ -189,7 +189,10 @@ sudo apt install -y postgresql postgresql-contrib
 ```
 
 2. Get PGTune parameters for you're RAM / Cores 
-https://pgtune.leopard.in.ua/#/ (put PG Version 11)
+https://pgtune.leopard.in.ua/#/
+* put PG Version 11
+* 2 GB RAM (if you bought what's linked above)
+* 4 CPU cores (if you bought what's linked above)
 
 3. Add the tune parameters at the end of:
 ```
