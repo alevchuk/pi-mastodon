@@ -303,3 +303,19 @@ yarn install --pure-lockfile
 RAILS_ENV=production bundle exec rake mastodon:setup  # if you are re-running this command AND want to destory current data and create an empty database, add DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 
 ```
+* Domain name: put your onion address from earlier step
+* Single user mode: No
+* Docker: No
+* PostgreSQL host: localhost
+* Port: Enter (uses the default)
+* Name of PostgreSQL database: press Enter
+* Name of PostgreSQL user: press Enter
+* Password of PostgreSQL user: DB_PASSWORD from earlier step (password does not echo back, so just pasted it and press Enter)
+* Redis host: press Enter
+* Redis port: 6379
+* Redis password: press Enter
+* Do you want to store uploaded files on the cloud?:  press Enter
+* Do you want to send e-mails from localhost? press Enter
+* press Enter for many email related questions
+* Send a test e-mail with this configuration right now? no
+* press Enter for the rest of the questions
