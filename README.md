@@ -35,7 +35,7 @@ External links to minibank wiki:
 2. [First time login](https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login)
 3. [Heat](https://github.com/alevchuk/minibank/blob/first/README.md#heat)
 4. [Netwrok](https://github.com/alevchuk/minibank/blob/first/README.md#network)
-5. [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable. NOTE: ignore the bitcoin stuff
+5. [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable
 
 ## 3. Setup 64-bit capability
 
@@ -195,6 +195,17 @@ ln -s /mnt/mastodon/gocode ~/gocode
 ln -s /mnt/mastodon/bin ~/bin
 ln -s /mnt/mastodon/live ~/live
 ```
+
+3. Setup convenience
+
+We already did convenience in the admin account (host operating system), now it's time to do the same inside the schroot
+
+```
+sudo schroot -c mastodon64
+
+```
+
+and go thru [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable inside the schroot
 
 
 ## 6. Build node.js and yarn 
