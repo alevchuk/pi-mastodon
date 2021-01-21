@@ -146,8 +146,30 @@ Other options:
 * [simple automation to look for onion addresses with words of 4 or more letters](https://github.com/alevchuk/ln-mastodon/blob/main/misc/onion-address-with-words.md)
 * [various tools to generate pretty .onion addresses](https://security.stackexchange.com/questions/29772/how-do-you-get-a-specific-onion-address-for-your-hidden-service) - here your taking on a larger scurity risk because your using extra software that you technically don't need
 
+4. Persist
+```
+sudo cp -r /var/lib/tor/hidden_service_tmp/ /var/lib/tor/hidden_service_mastodon/ 
+```
 
+4. Change tor config to use the persisted version:
+```
+sudo vi /etc/tor/torrc
+```
+* at the end of the file change:
+```
+HiddenServiceDir /var/lib/tor/hidden_service_tmp/
+```
+* to:
+```
+HiddenServiceDir /var/lib/tor/hidden_service_mastodon/
+```
 
+5. Restart Tor and print your new hostname
+```
+sudo service tor restart
+sudo cat /var/lib/tor/hidden_service_mastodon/hostname
+
+```
 
 ## 5. Install Mastodon dependencies inside schroot
 
