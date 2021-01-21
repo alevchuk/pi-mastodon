@@ -139,8 +139,14 @@ HiddenServicePort 80 127.0.0.1:80
 
 3. Run the following, you can run it multiple times - until you see an address that you like:
 ```
-sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname && sleep 2
+sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 4 && sudo cat /var/lib/tor/hidden_service_tmp/hostname
 ```
+
+Other options:
+* [simple automation to look for onion addresses with words of 4 or more letters](https://github.com/alevchuk/ln-mastodon/blob/main/misc/onion-address-with-words.md)
+* [various tools to generate pretty .onion addresses](https://security.stackexchange.com/questions/29772/how-do-you-get-a-specific-onion-address-for-your-hidden-service) - here your taking on a larger scurity risk because your using extra software that you technically don't need
+
+
 
 
 ## 5. Install Mastodon dependencies inside schroot
