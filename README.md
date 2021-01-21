@@ -1,5 +1,5 @@
 # pi-mastodon
-Self-Hosted Mastodon on a Pi via Tor
+Mastodon on a Pi via Tor
 
 Based to official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid, specific to a self-hosted Raspberry Pi, and made to work over Tor without SSL
 
