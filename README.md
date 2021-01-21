@@ -38,7 +38,8 @@ External links to minibank wiki:
 
 ## 3. Setup 64-bit capability
 
-You'll need 64-bit dependency binaries so lets setup a 64-bit Kernel and schroot:
+For Mast to work you'll need 64-bit dependency binaries so lets setup a 64-bit Kernel and schroot (if you need to know what this does, read
+https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653):
 
 1. Update the kernel and enable 64 bit mode:
 
@@ -77,8 +78,7 @@ Check:
 uname -a  # you should you see "aarch64 GNU/Linux" at the end of the line
 ```
 
-If you need to know what this does read:
-https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653
+
 
 2. Install debootstrap and schroot
 ```
