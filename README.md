@@ -9,12 +9,13 @@ Table of contents
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Setup 64-bit capability](#3-setup-64-bit-capability)
-  * [4. Install Mastodon dependencies inside schroot](#4-install-mastodon-dependencies-inside-schroot)
-  * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
-  * [6. Install Ruby and Bundler](#6-install-ruby-and-bundler)
-  * [7. Install PostgreSQL](#7-install-postgresql)
-  * [8. Install Redis](#8-install-redis)
-  * [9. Setup Mastodon](#9-setup-mastodon)
+  * [4. Get a TOR .onion adress](#4-get-a-tor-onion-address)
+  * [5. Install Mastodon dependencies inside schroot](#5-install-mastodon-dependencies-inside-schroot)
+  * [6. Build node.js and yarn ](#6-build-nodejs-and-yarn)
+  * [7. Install Ruby and Bundler](#7-install-ruby-and-bundler)
+  * [8. Install PostgreSQL](#8-install-postgresql)
+  * [9. Install Redis](#9-install-redis)
+  * [10. Setup Mastodon](#10-setup-mastodon)
  
 ## 1. Get hardware
 
@@ -78,8 +79,6 @@ Check:
 uname -a  # you should you see "aarch64 GNU/Linux" at the end of the line
 ```
 
-
-
 2. Install debootstrap and schroot
 ```
 sudo apt install -y debootstrap schroot
@@ -121,7 +120,11 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/live
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## 4. Install Mastodon dependencies inside schroot
+## 4. Get a TOR .onion address
+
+d
+
+## 5. Install Mastodon dependencies inside schroot
 
 1. From "admin" account run
 ```
@@ -147,7 +150,7 @@ ln -s /mnt/mastodon/live ~/live
 ```
 
 
-## 5. Build node.js and yarn 
+## 6. Build node.js and yarn 
 * Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
 ```
 sudo su -l mastodon
@@ -186,7 +189,7 @@ npm install -g yarn
 ```
 
 
-## 6. Install Ruby and Bundler
+## 7. Install Ruby and Bundler
 
 1. Install rbenv and rbenv-build:
 
@@ -221,7 +224,7 @@ exit  # or press Ctrl-d
 ```
 
 
-## 7. Install PostgreSQL
+## 8. Install PostgreSQL
 
 1. Install default PostgreSQL version 11:
 ```
@@ -263,15 +266,14 @@ ALTER USER mastodon PASSWORD 'DB_PASSWORD';
 \q
 ```
 
-## 8. Install Redis
+## 9. Install Redis
 
 1. Install default system Redis:
 ```
 sudo apt install -y redis-server
 ```
 
-
-## 9. Setup Mastodon
+## 10. Setup Mastodon
 * Prerequisit: you need to be logged in as "mastodon" followed by going into schroot:
 ```
 sudo su -l mastodon
