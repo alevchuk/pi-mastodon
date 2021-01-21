@@ -9,7 +9,7 @@ Table of contents
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Setup 64-bit capability](#3-setup-64-bit-capability)
-  * [4. Get a TOR .onion address](#4-get-a-tor-onion-address)
+  * [4. Get a Tor .onion address](#4-get-a-tor-onion-address)
   * [5. Install Mastodon dependencies inside schroot](#5-install-mastodon-dependencies-inside-schroot)
   * [6. Build node.js and yarn ](#6-build-nodejs-and-yarn)
   * [7. Install Ruby and Bundler](#7-install-ruby-and-bundler)
