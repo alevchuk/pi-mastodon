@@ -137,9 +137,9 @@ HiddenServiceDir /var/lib/tor/hidden_service_tmp/
 HiddenServicePort 80 127.0.0.1:80
 ```
 
-3. Run the following, multiple times - until you see an address that you like:
+3. Run the following, you can run it multiple times - until you see an address that you like:
 ```
-sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname
+sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname && sleep 2
 ```
 
 
