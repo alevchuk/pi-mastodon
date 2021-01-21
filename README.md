@@ -1,5 +1,5 @@
 # ln-mastodon
-Mastodon on Lightning
+Self-Hosted Mastodon on Tor
 
 Based to official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid and specific to a self-hosted Raspberry Pi setup
 
@@ -16,6 +16,7 @@ Table of contents
   * [8. Install PostgreSQL](#8-install-postgresql)
   * [9. Install Redis](#9-install-redis)
   * [10. Setup Mastodon](#10-setup-mastodon)
+  * [11. Setup Nginx](#11-setup-nginx)
  
 ## 1. Get hardware
 
@@ -424,3 +425,5 @@ schroot -c mastodon64
 cd ~/live
 HTTPS_KEY=off SERVER_PROTOCOL=http PORT=4000 NODE_ENV=production /home/mastodon/bin/bin/node ./streaming
 ```
+
+## 11. Setup Nginx
