@@ -185,7 +185,7 @@ exit  # or press Ctrl-d
 
 1. Install default PostgreSQL version 11:
 ```
-sudo apt install postgresql postgresql-contrib
+sudo apt install -y postgresql postgresql-contrib
 ```
 
 2. Get PGTune parameters for you're RAM / Cores 
@@ -217,7 +217,7 @@ CREATE USER mastodon CREATEDB;
 
 1. Install default system Redis:
 ```
-sudo apt install redis-server
+sudo apt install -y redis-server
 ```
 
 
