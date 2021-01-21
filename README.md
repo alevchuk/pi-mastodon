@@ -8,7 +8,7 @@ Table of contents
 
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
-  * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
+  * [3. Setup 64-bit capability](#3-setup-64-bit-capability)
   * [4. Install Mastodon dependencies inside schroot](#4-install-mastodon-dependencies-inside-schroot)
   * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
   * [6. Install Ruby and Bundler](#6-install-ruby-and-bundler)
@@ -36,21 +36,61 @@ External links to minibank wiki:
 4. [Netwrok](https://github.com/alevchuk/minibank/blob/first/README.md#network)
 5. [Convenience Stuff](https://github.com/alevchuk/minibank/blob/first/README.md#convenience-stuff) - to make it comfortable. NOTE: ignore the bitcoin stuff
 
-## 3. Install prereqisits and get 64-bit capability
+## 3. Setup 64-bit capability
 
-You'll need 64-bit dependency binaries so lets setup schroot
+You'll need 64-bit dependency binaries so lets setup a 64-bit Kernel and schroot:
 
-1. Install debootstrap and schroot
+1. Update the kernel and enable 64 bit mode:
+
+First check if you aleady have this step done, run:
+```
+uname -a  # if you see "aarch64 GNU/Linux" then this step is done and you can skip this setep, and go to intalling debootstrap
+```
+
+Run:
+```
+sudo rpi-update  # there will be interactive prompt, press "y" to proceed
+```
+
+Reboot #1:
+```
+sudo reboot
+```
+
+Edit kernel parameters (use vi or if unfamiliar, use nano):
+```
+sudo vi /boot/config.txt
+```
+
+In the `[pi4]` section add:
+```
+arm_64bit=1
+```
+
+Reboot #2:
+```
+sudo reboot
+```
+
+Check:
+```
+uname -a  # you should you see "aarch64 GNU/Linux" at the end of the line
+```
+
+If you need to know what this does read:
+https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653
+
+2. Install debootstrap and schroot
 ```
 sudo apt install -y debootstrap schroot
 ```
 
-2. Create mastodon user:
+3. Create mastodon user:
 ```
 sudo adduser --disabled-password mastodon  # when prompted press and hold Enter
 ```
 
-3. Form "admin" account (that has `sudo`) run:
+4. Form "admin" account (that has `sudo`) run:
 ```
 sudo mkdir /mnt/mastodon
 sudo chown -R mastodon /mnt/mastodon
