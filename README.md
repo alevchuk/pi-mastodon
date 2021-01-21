@@ -9,7 +9,7 @@ Table of contents
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Setup 64-bit capability](#3-setup-64-bit-capability)
-  * [4. Get a TOR .onion adress](#4-get-a-tor-onion-address)
+  * [4. Get a TOR .onion address](#4-get-a-tor-onion-address)
   * [5. Install Mastodon dependencies inside schroot](#5-install-mastodon-dependencies-inside-schroot)
   * [6. Build node.js and yarn ](#6-build-nodejs-and-yarn)
   * [7. Install Ruby and Bundler](#7-install-ruby-and-bundler)
@@ -120,9 +120,28 @@ sudo mkdir /mnt/mastodon/pi64/mnt/mastodon/live
 sudo chown -R mastodon /mnt/mastodon/pi64/mnt/mastodon
 ```
 
-## 4. Get a TOR .onion address
+## 4. Get a Tor .onion address
 
-d
+1. Install Tor
+```
+sudo apt install -y tor
+```
+
+2. Edit /etc/tor/torrc (use vi if familiary, otherwise nano):
+```
+sudo vi /etc/tor/torrc
+```
+* at the end of the file add:
+```
+HiddenServiceDir /var/lib/tor/hidden_service_tmp/
+HiddenServicePort 80 127.0.0.1:80
+```
+
+3. Run the following, multiple times - until you see an address that you like:
+```
+sudo rm -rf /var/lib/tor/hidden_service_tmp/ &&  sudo service tor restart && sleep 2 && sudo cat /var/lib/tor/hidden_service_tmp/hostname
+```
+
 
 ## 5. Install Mastodon dependencies inside schroot
 
