@@ -387,3 +387,15 @@ schroot -c mastodon64
 RAILS_ENV=production ./bin/tootctl accounts create admin2 --role admin --email admin2@mast.com
 
 ```
+
+5. Update mastodon config:
+```
+vi ~/.env.production
+```
+on top add:
+```
+LOCAL_DOMAIN=a1b2c3.onion
+STREAMING_API_BASE_URL=http://a1b2c3.onion
+CDN_HOST=http://a1b2c3.onion
+```
+* replace "a1b2c3.onion" with the onion address you generated earlier
