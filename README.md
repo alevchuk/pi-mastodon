@@ -533,7 +533,13 @@ server {
 }
 ```
 
-And now restart nginx:
+3. Enable config:
+```
+sudo ln -s /etc/nginx/sites-available/mastodon /etc/nginx/sites-enabled/mastodon
+
+```
+
+4. Restart nginx:
 ```
 sudo systemctl restart nginx
 
