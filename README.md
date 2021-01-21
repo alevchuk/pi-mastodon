@@ -9,7 +9,7 @@ Table of contents
   * [1. Get hardware](#1-get-hardware)
   * [2. Install operating system and check temperature](#2-install-operating-system-and-check-temperature)
   * [3. Install prereqisits and get 64-bit environment](#3-install-prereqisits-and-get-64-bit-capability)
-  * [4. Setup account and schroot](#4-setup-account-and-schroot)
+  * [4. Install Mastodon dependencies inside schroot](#4-install-mastodon-dependencies-inside-schroot)
   * [5. Build node.js and yarn ](#5-build-nodejs-and-yarn)
   * [6. Install Ruby and Bundler](#6-install-ruby-and-bundler)
   * [7. Install PostgreSQL](#7-install-postgresql)
