@@ -287,7 +287,7 @@ exit  # or press Ctrl-d
 
 ## 8. Install PostgreSQL
 
-1. Install default PostgreSQL version 11:
+1. On "admin" account (not inside schroot), install default PostgreSQL version 11:
 ```
 sudo apt install -y postgresql postgresql-contrib
 ```
@@ -329,7 +329,7 @@ ALTER USER mastodon PASSWORD 'DB_PASSWORD';
 
 ## 9. Install Redis
 
-1. Install default system Redis:
+1. On "admin" account (not inside schroot), install default system Redis:
 ```
 sudo apt install -y redis-server
 ```
@@ -398,11 +398,11 @@ vi ~/.env.production
 ```
 on top add:
 ```
-LOCAL_DOMAIN=a1b2c3.onion
-STREAMING_API_BASE_URL=http://a1b2c3.onion
-CDN_HOST=http://a1b2c3.onion
+LOCAL_DOMAIN=ONION_SITE_GOES_HERE
+STREAMING_API_BASE_URL=http://ONION_SITE_GOES_HERE
+CDN_HOST=http://ONION_SITE_GOES_HERE
 ```
-* replace "a1b2c3.onion" with the onion address you generated earlier
+* replace ONION_SITE_GOES_HERE with the onion address you generated earlier (e.g. a1b2c3.onion)
 
 6. Start 3 mastodon services. Later, we'll setup these as systemd services that get restarted automatically if they crash. Yet, at this stage you'll need to learn how to use [multiple virtual windowns in Screen](https://www.youtube.com/watch?v=HomIzLB-HBc) and run all 3 services in parallel:
 
@@ -427,3 +427,114 @@ HTTPS_KEY=off SERVER_PROTOCOL=http PORT=4000 NODE_ENV=production /home/mastodon/
 ```
 
 ## 11. Setup Nginx
+
+1. On "admin" account (not inside schroot), install nginx
+```
+sudo apt install -y nginx
+
+```
+
+2. Create new config
+```
+sudo vi /etc/nginx/sites-available/mastodon
+
+```
+
+Paste the following, yet replace **ONION_SITE_GOES_HERE** with your .onion address generated at an earlier step (e.g. a1b2c3.onion)
+
+```
+upstream backend {
+    server 127.0.0.1:3001 fail_timeout=0;
+}
+
+upstream streaming {
+    server 127.0.0.1:4000 fail_timeout=0;
+}
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  ''      close;
+}
+
+server {
+  listen 80;
+  listen [::]:80;
+  server_name ONION_SITE_GOES_HERE;
+
+  keepalive_timeout    70;
+  sendfile             on;
+  client_max_body_size 80m;
+
+  root /home/mastodon/live/public;
+
+  gzip on;
+  gzip_disable "msie6";
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 6;
+  gzip_buffers 16 8k;
+  gzip_http_version 1.1;
+  gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+  add_header X-Frame-Options "DENY";
+
+  add_header Content-Security-Policy "default-src 'none'; script-src 'self'; object-src 'self'; style-src 'self'; img-src 'self' data: blob: http://ONION_SITE_GOES_HERE; media-src 'self' data: http://ONION_SITE_GOES_HERE; frame-src 'none'; font-src 'self' data: http://ONION_SITE_GOES_HERE; frame-ancestors 'self'; form-action 'self'; base-uri 'self'; connect-src 'self' blob: wss://ONION_SITE_GOES_HERE";
+
+  location / {
+    try_files $uri @proxy;
+  }
+  
+  location ~ ^/(emoji|packs|system/accounts/avatars|system/media_attachments/files) {
+    try_files $uri @proxy;
+  }
+
+  location /sw.js {
+    try_files $uri @proxy;
+  }
+
+  location @proxy {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    proxy_set_header Proxy "";
+    proxy_pass_header Server;
+
+    proxy_pass http://backend;
+    proxy_buffering on;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    tcp_nodelay on;
+  }
+
+  location /api/v1/streaming {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header Proxy "";
+
+    proxy_pass http://streaming;
+    proxy_buffering off;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    tcp_nodelay on;
+  }
+  
+  error_page 500 501 502 503 504 /500.html;
+  access_log /var/log/nginx/mastodon_access.log;
+  error_log /var/log/nginx/mastodon_error.log warn;
+}
+```
+
+And now restart nginx:
+```
+sudo systemctl restart nginx
+
+```
