@@ -97,7 +97,7 @@ sudo schroot -c mastodon64 -- apt install -y imagemagick ffmpeg libpq-dev libxml
   curl
 ```
 
-4. Setup symlinks
+2. Setup symlinks
 ```
 sudo su -l mastodon
 schroot -c mastodon64
