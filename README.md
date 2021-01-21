@@ -29,6 +29,7 @@ If you want a Raid mirror for data protection follow https://github.com/alevchuk
 
 ## 2. Install operating system and check temperature
 
+External links to minibank wiki:
 1. [Operating System](https://github.com/alevchuk/minibank/blob/first/README.md#operating-system)
 2. [First time login](https://github.com/alevchuk/minibank/blob/first/README.md#first-time-login)
 3. [Heat](https://github.com/alevchuk/minibank/blob/first/README.md#heat)
