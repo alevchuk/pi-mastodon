@@ -149,10 +149,11 @@ Other options:
 
 4. Persist
 ```
-sudo cp -r /var/lib/tor/hidden_service_tmp/ /var/lib/tor/hidden_service_mastodon/ 
+sudo mv /var/lib/tor/hidden_service_tmp /var/lib/tor/hidden_service_mastodon
+
 ```
 
-4. Change tor config to use the persisted version:
+5. Change tor config to use the persisted version:
 ```
 sudo vi /etc/tor/torrc
 ```
@@ -165,7 +166,7 @@ HiddenServiceDir /var/lib/tor/hidden_service_tmp/
 HiddenServiceDir /var/lib/tor/hidden_service_mastodon/
 ```
 
-5. Restart Tor and print your new hostname
+6. Restart Tor and print your new hostname
 ```
 sudo service tor restart
 sudo cat /var/lib/tor/hidden_service_mastodon/hostname
