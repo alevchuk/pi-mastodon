@@ -399,9 +399,15 @@ vi ~/.env.production
 ```
 on top add:
 ```
+HTTPS_KEY=off
+SERVER_PROTOCOL=http
+PORT=3001
+BIND=127.0.0.1
+
 LOCAL_DOMAIN=ONION_SITE_GOES_HERE
 STREAMING_API_BASE_URL=http://ONION_SITE_GOES_HERE
 CDN_HOST=http://ONION_SITE_GOES_HERE
+
 ```
 * replace ONION_SITE_GOES_HERE with the onion address you generated earlier (e.g. a1b2c3.onion)
 
@@ -412,19 +418,20 @@ CDN_HOST=http://ONION_SITE_GOES_HERE
 sudo su -l mastodon
 schroot -c mastodon64
 cd ~/live
-HTTPS_KEY=off SERVER_PROTOCOL=http PORT=3001 RAILS_ENV=production bundle exec rails s
+PORT=3001 RAILS_ENV=production bundle exec rails s
 
 # in sceen window 2
 sudo su -l mastodon
 schroot -c mastodon64
 cd ~/live
-HTTPS_KEY=off SERVER_PROTOCOL=http RAILS_ENV=production DB_POOL=25 MALLOC_ARENA_MAX=2 /home/mastodon/.rbenv/shims/bundle exec sidekiq -c 25
+RAILS_ENV=production DB_POOL=25 MALLOC_ARENA_MAX=2 /home/mastodon/.rbenv/shims/bundle exec sidekiq -c 25
 
 # in screen window 3
 sudo su -l mastodon
 schroot -c mastodon64
 cd ~/live
-HTTPS_KEY=off SERVER_PROTOCOL=http PORT=4000 NODE_ENV=production /home/mastodon/bin/bin/node ./streaming
+NODE_ENV=production PORT=4000 /home/mastodon/bin/bin/node ./streaming
+
 ```
 
 ## 11. Setup Nginx
