@@ -169,7 +169,9 @@ HiddenServiceDir /var/lib/tor/hidden_service_mastodon/
 6. Restart Tor and print your new hostname
 ```
 sudo service tor restart
-sudo cat /var/lib/tor/hidden_service_mastodon/hostname
+
+sudo service tor status  # check that it's running
+sudo cat /var/lib/tor/hidden_service_mastodon/hostname  # print your .onion address
 
 ```
 
