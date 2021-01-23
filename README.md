@@ -827,3 +827,26 @@ index 35ba44005..9e76a4ac5 100644
 EOF
 
 ```
+
+If the patch applies cleany, it will say:
+```
+> EOF
+patching file app/controllers/accounts_controller.rb
+patching file app/controllers/api/web/base_controller.rb
+patching file app/controllers/application_controller.rb
+patching file app/controllers/auth/sessions_controller.rb
+patching file app/controllers/settings/sessions_controller.rb
+patching file app/models/user.rb
+patching file config/environments/development.rb
+patching file config/environments/production.rb
+patching file config/initializers/1_hosts.rb
+patching file config/initializers/devise.rb
+patching file config/initializers/session_store.rb
+patching file config/navigation.rb
+patching file vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb
+patching file vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
+```
+
+3. Now restart your mastodon server: 3.1. Navigate the Screen window where it's running; 3.2. Press Ctrl-c; 3.3. Press up arrow to select the previous command
+
+4. Point your Tor browser to http://ONION_SITE_GOES_HERE
