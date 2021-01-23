@@ -595,7 +595,7 @@ sha256sum vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/h
 # should say "cccb04f6a65890672fffc1b7a6fd7f9d55367e7e0bfc55521a2e5f334db7b06d"
 ```
 
-2. If step 1 does not produce the correct hashes then the following step is probably not going to work. I encoruage you to reach out to me, send by the hashes you get, and I'll help you debug and produce a differnet patch if needed.
+2. If step 1 does not produce the correct hashes then the following step is probably not going to work. I encoruage you to reach out to me on @alevchuk@bitcoinhackers.org, send by the hashes you get, and I'll help you debug.
 
 Copy the following lage command (all the way to, and including "EOF"), and run it: 
 ```diff
