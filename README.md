@@ -17,6 +17,7 @@ Table of contents
   * [9. Install Redis](#9-install-redis)
   * [10. Setup Mastodon](#10-setup-mastodon)
   * [11. Setup Nginx](#11-setup-nginx)
+  * [12. Remove HTTP from Mastodon](#12-remove-https-from-mastodon)
  
 ## 1. Get hardware
 
