@@ -819,6 +819,10 @@ patching file vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_contro
 patching file vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
 ```
 
-3. Restart your mastodon server: 3.1. Navigate the Screen window where it's running; 3.2. Press Ctrl-c; 3.3. Press up arrow to select the previous command
+3. Restart your mastodon server:
 
-4. Point your Tor browser to http://ONION_SITE_GOES_HERE and enjoy your instance as a Tor Hidden Service
+* 3.1. Navigate the Screen window where it's running
+* 3.2. Press Ctrl-c
+* 3.3. Press up arrow (to select the previous command), check that it's "rails s" and Hit Enter
+
+4. Point your Tor browser to `http://ONION_SITE_GOES_HERE` and enjoy your instance as a Tor Hidden Service
