@@ -596,8 +596,9 @@ sha256sum vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/h
 
 2. If step 1 does not produce the correct hashes then the following step is probably not going to work. I encoruage you to reach out to me, send by the hashes you get, and I'll help you debug and produce a differnet patch if needed.
 
-Copy the following lage command (all the way to, and including "EOF"), and run, it: 
-```
+Copy the following lage command (all the way to, and including "EOF"), and run it: 
+```diff
+
 cd ~/live
 patch --ignore-whitespace -p1 << 'EOF'
 From cb5188b1c5146eb5cacd6b99a695c006b0fa7381 Mon Sep 17 00:00:00 2001
@@ -821,4 +822,5 @@ index 35ba44005..9e76a4ac5 100644
 --
 2.20.1
 EOF
+
 ```
