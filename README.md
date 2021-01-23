@@ -573,3 +573,252 @@ sudo ln -s /etc/nginx/sites-available/mastodon /etc/nginx/sites-enabled/mastodon
 sudo systemctl restart nginx
 
 ```
+
+## 12. Remove HTTPS from Mastodon
+
+Tor does not need HTTPS. Moreover it does damage, signing SSL Certrficates is costly and cetralized (most authorities will not even sign a .onion address). Self-singned cettificated generate warnings that are very hard to bypass and get users acistomed to ignoring warnings that are imporatnt on clearnet.
+
+Yet Mastadon is hardcoded to use HTTPS. So lets de-hardcode it.
+
+1. Check that everything was installed correctly:
+```
+cd ~/live
+git log -n1 # should say "commit 444b21b55ff5768e4cbbaf7cfa8285c65a4b54f9 (HEAD, tag: v3.3.0rc3)"
+
+git status  # should say "nothing to commit, working tree clean"
+
+sha256sum vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb
+# shuld say "da60d1e6315e4ef7e88ebb08a30b283cfcea588c0df3f610cd898f6b5fbd7ad9"
+
+sha256sum vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
+# should say "cccb04f6a65890672fffc1b7a6fd7f9d55367e7e0bfc55521a2e5f334db7b06d"
+```
+
+2. If step 1 does not produce the correct hashes then the following step is probably not going to work. I encoruage you to reach out to me, send by the hashes you get, and I'll help you debug and produce a differnet patch if needed.
+
+Copy the following lage command (all the way to, and including "EOF"), and run, it: 
+```
+cd ~/live
+patch --ignore-whitespace -p1 << 'EOF'
+From cb5188b1c5146eb5cacd6b99a695c006b0fa7381 Mon Sep 17 00:00:00 2001
+From: Your Name <alevchuk@example.com>
+Date: Sat, 23 Jan 2021 14:21:59 +0000
+Subject: [PATCH] HTTP patch
+
+---
+ app/controllers/accounts_controller.rb                      | 6 ++++++
+ app/controllers/api/web/base_controller.rb                  | 2 +-
+ app/controllers/application_controller.rb                   | 2 +-
+ app/controllers/auth/sessions_controller.rb                 | 3 +++
+ app/controllers/settings/sessions_controller.rb             | 3 ---
+ app/models/user.rb                                          | 3 ++-
+ config/environments/development.rb                          | 3 +++
+ config/environments/production.rb                           | 2 ++
+ config/initializers/1_hosts.rb                              | 2 +-
+ config/initializers/devise.rb                               | 4 ++--
+ config/initializers/session_store.rb                        | 2 +-
+ config/navigation.rb                                        | 2 +-
+ .../lib/action_controller/metal/redirecting.rb              | 2 +-
+ .../gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb | 2 +-
+ 14 files changed, 25 insertions(+), 13 deletions(-)
+
+diff --git a/app/controllers/accounts_controller.rb b/app/controllers/accounts_controller.rb
+index b902ada09..4d9c1e2ae 100644
+--- a/app/controllers/accounts_controller.rb
++++ b/app/controllers/accounts_controller.rb
+@@ -1,6 +1,12 @@
+ # frozen_string_literal: true
+
+ class AccountsController < ApplicationController
++  force_ssl if: :ssl_configured?
++
++  def ssl_configured?
++    false
++  end
++
+   PAGE_SIZE     = 20
+   PAGE_SIZE_MAX = 200
+
+diff --git a/app/controllers/api/web/base_controller.rb b/app/controllers/api/web/base_controller.rb
+index 8da549b3a..6bb80f857 100644
+--- a/app/controllers/api/web/base_controller.rb
++++ b/app/controllers/api/web/base_controller.rb
+@@ -2,7 +2,7 @@
+
+ class Api::Web::BaseController < Api::BaseController
+   protect_from_forgery with: :exception
+-
++
+   rescue_from ActionController::InvalidAuthenticityToken do
+     render json: { error: "Can't verify CSRF token authenticity." }, status: 422
+   end
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index 44616d6e5..38865c16b 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
+   private
+
+   def https_enabled?
+-    Rails.env.production? && !request.path.start_with?('/health')
++    false
+   end
+
+   def authorized_fetch_mode?
+diff --git a/app/controllers/auth/sessions_controller.rb b/app/controllers/auth/sessions_controller.rb
+index 13d158c67..1f0b2765d 100644
+--- a/app/controllers/auth/sessions_controller.rb
++++ b/app/controllers/auth/sessions_controller.rb
+@@ -9,6 +9,9 @@ class Auth::SessionsController < Devise::SessionsController
+   skip_before_action :require_functional!
+   skip_before_action :update_user_sign_in
+
++  # here123
++  skip_before_action :verify_authenticity_token
++
+   include TwoFactorAuthenticationConcern
+   include SignInTokenAuthenticationConcern
+
+diff --git a/app/controllers/settings/sessions_controller.rb b/app/controllers/settings/sessions_controller.rb
+index ee2fc5dc8..8a4804328 100644
+--- a/app/controllers/settings/sessions_controller.rb
++++ b/app/controllers/settings/sessions_controller.rb
+@@ -3,9 +3,6 @@
+ class Settings::SessionsController < Settings::BaseController
+   skip_before_action :require_functional!
+
+-  before_action :require_not_suspended!
+-  before_action :set_session, only: :destroy
+-
+   def destroy
+     @session.destroy!
+     flash[:notice] = I18n.t('sessions.revoke_success')
+diff --git a/app/models/user.rb b/app/models/user.rb
+index b4508c2eb..621e73931 100644
+--- a/app/models/user.rb
++++ b/app/models/user.rb
+@@ -131,7 +131,8 @@ class User < ApplicationRecord
+   attr_writer :external, :bypass_invite_request_check
+
+   def confirmed?
+-    confirmed_at.present?
++    # No email confirmations on Tor, need lighting to make spam uneconomical
++    true
+   end
+
+   def invited?
+diff --git a/config/environments/development.rb b/config/environments/development.rb
+index 0791b82ab..8f3ecc73d 100644
+--- a/config/environments/development.rb
++++ b/config/environments/development.rb
+@@ -1,6 +1,9 @@
+ Rails.application.configure do
+   # Settings specified here will take precedence over those in config/application.rb.
+
++  config.force_ssl = false
++  config.x.use_https = false
++
+   # In the development environment your application's code is reloaded on
+   # every request. This slows down response time but is perfect for development
+   # since you don't have to restart the web server when you make code changes.
+diff --git a/config/environments/production.rb b/config/environments/production.rb
+index aaad2449f..2e4eacfa0 100644
+--- a/config/environments/production.rb
++++ b/config/environments/production.rb
+@@ -1,5 +1,7 @@
+ Rails.application.configure do
+   # Settings specified here will take precedence over those in config/application.rb.
++  config.force_ssl = false
++  config.x.use_https = false
+
+   # Code is not reloaded between requests.
+   config.cache_classes = true
+diff --git a/config/initializers/1_hosts.rb b/config/initializers/1_hosts.rb
+index 757f1f735..159295095 100644
+--- a/config/initializers/1_hosts.rb
++++ b/config/initializers/1_hosts.rb
+@@ -7,7 +7,7 @@ web_host = ENV.fetch('WEB_DOMAIN') { host }
+ alternate_domains = ENV.fetch('ALTERNATE_DOMAINS') { '' }
+
+ Rails.application.configure do
+-  https = Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'
++  https = false
+
+   config.x.local_domain = host
+   config.x.web_domain   = web_host
+diff --git a/config/initializers/devise.rb b/config/initializers/devise.rb
+index ef612e177..2c6258c71 100644
+--- a/config/initializers/devise.rb
++++ b/config/initializers/devise.rb
+@@ -9,7 +9,7 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
+     value: session_id,
+     expires: 1.year.from_now,
+     httponly: true,
+-    secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
++    secure: false,
+     same_site: :lax,
+   }
+ end
+@@ -20,7 +20,7 @@ Warden::Manager.after_fetch do |user, warden|
+       value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
+       expires: 1.year.from_now,
+       httponly: true,
+-      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
++      secure: false,
+       same_site: :lax,
+     }
+   else
+diff --git a/config/initializers/session_store.rb b/config/initializers/session_store.rb
+index e5d1be4c6..4c30b7851 100644
+--- a/config/initializers/session_store.rb
++++ b/config/initializers/session_store.rb
+@@ -2,6 +2,6 @@
+
+ Rails.application.config.session_store :cookie_store, {
+   key: '_mastodon_session',
+-  secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
++  secure: false,
+   same_site: :lax,
+ }
+diff --git a/config/navigation.rb b/config/navigation.rb
+index 4a56abe18..16c8b3029 100644
+--- a/config/navigation.rb
++++ b/config/navigation.rb
+@@ -54,6 +54,6 @@ SimpleNavigation::Configuration.run do |navigation|
+       s.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url, link_html: { target: 'pghero' }, if: -> { current_user.admin? }
+     end
+
+-    n.item :logout, safe_join([fa_icon('sign-out fw'), t('auth.logout')]), destroy_user_session_url, link_html: { 'data-method' => 'delete' }
++    n.item :logout, safe_join([fa_icon('sign-out fw'), t('auth.logout')]), destroy_user_session_url(protocol: 'http'), link_html: { 'data-method' => 'delete' }
+   end
+ end
+diff --git a/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb b/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb
+index 2804a06a5..3b0048cd7 100644
+--- a/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb
++++ b/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_controller/metal/redirecting.rb
+@@ -103,7 +103,7 @@ module ActionController
+       when /\A([a-z][a-z\d\-+\.]*:|\/\/).*/i
+         options
+       when String
+-        request.protocol + request.host_with_port + options
++        "http://" + request.host_with_port + options
+       when Proc
+         _compute_redirect_to_location request, instance_eval(&options)
+       else
+diff --git a/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb b/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
+index 35ba44005..9e76a4ac5 100644
+--- a/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
++++ b/vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/http/url.rb
+@@ -205,7 +205,7 @@ module ActionDispatch
+       #   req = ActionDispatch::Request.new 'HTTP_HOST' => 'example.com', 'HTTPS' => 'on'
+       #   req.protocol # => "https://"
+       def protocol
+-        @protocol ||= ssl? ? "https://" : "http://"
++        @protocol ||= "http://"
+       end
+
+       # Returns the \host and port for this request, such as "example.com:8080".
+--
+2.20.1
+EOF
+```
