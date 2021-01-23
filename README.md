@@ -669,34 +669,7 @@ index 44616d6e5..38865c16b 100644
    end
 
    def authorized_fetch_mode?
-diff --git a/app/controllers/auth/sessions_controller.rb b/app/controllers/auth/sessions_controller.rb
-index 13d158c67..1f0b2765d 100644
---- a/app/controllers/auth/sessions_controller.rb
-+++ b/app/controllers/auth/sessions_controller.rb
-@@ -9,6 +9,9 @@ class Auth::SessionsController < Devise::SessionsController
-   skip_before_action :require_functional!
-   skip_before_action :update_user_sign_in
 
-+  # here123
-+  skip_before_action :verify_authenticity_token
-+
-   include TwoFactorAuthenticationConcern
-   include SignInTokenAuthenticationConcern
-
-diff --git a/app/controllers/settings/sessions_controller.rb b/app/controllers/settings/sessions_controller.rb
-index ee2fc5dc8..8a4804328 100644
---- a/app/controllers/settings/sessions_controller.rb
-+++ b/app/controllers/settings/sessions_controller.rb
-@@ -3,9 +3,6 @@
- class Settings::SessionsController < Settings::BaseController
-   skip_before_action :require_functional!
-
--  before_action :require_not_suspended!
--  before_action :set_session, only: :destroy
--
-   def destroy
-     @session.destroy!
-     flash[:notice] = I18n.t('sessions.revoke_success')
 diff --git a/app/models/user.rb b/app/models/user.rb
 index b4508c2eb..621e73931 100644
 --- a/app/models/user.rb
@@ -834,8 +807,6 @@ If the patch applies cleany, it will say:
 patching file app/controllers/accounts_controller.rb
 patching file app/controllers/api/web/base_controller.rb
 patching file app/controllers/application_controller.rb
-patching file app/controllers/auth/sessions_controller.rb
-patching file app/controllers/settings/sessions_controller.rb
 patching file app/models/user.rb
 patching file config/environments/development.rb
 patching file config/environments/production.rb
