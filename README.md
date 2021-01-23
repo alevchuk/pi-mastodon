@@ -599,7 +599,10 @@ sha256sum vendor/bundle/ruby/2.7.0/gems/actionpack-5.2.4.4/lib/action_dispatch/h
 Copy the following lage command (all the way to, and including "EOF"), and run it: 
 ```diff
 
+sudo su -l mastodon
+schroot -c mastodon64
 cd ~/live
+
 patch --ignore-whitespace -p1 << 'EOF'
 From cb5188b1c5146eb5cacd6b99a695c006b0fa7381 Mon Sep 17 00:00:00 2001
 From: Your Name <alevchuk@example.com>
