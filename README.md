@@ -1,7 +1,7 @@
 # pi-mastodon
 Mastodon on a Pi via Tor
 
-Based to official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid, setup on Raspberry Pi, and made to work over Tor without SSL
+Based on official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid, setup on Raspberry Pi, and made to work over Tor without SSL. This runbook will get you to a working Mastodon instance on a Pi via Tor. Work remaining here is: (1) systemd script - so you don't have to restart Mastodon processes manually after rebooting the Pi; (2) Torify all outgoing connections for additional privacy for your instance.
 
 Table of contents
 =================
