@@ -3,7 +3,19 @@ Mastodon on a Pi via Tor
 
 ![img2](https://raw.githubusercontent.com/alevchuk/pi-mastodon/master/img/img2.jpeg "picture of a pi 4 in flirc case connected to power and network and a Tor browsers to a a phone showing an onion address and a Mastadon login")
 
-Based on official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid, setup on Raspberry Pi, and made to work over Tor without SSL. This runbook will get you to a working instance, yet some work remains for this runbook: (1) systemd scripts - so you don't have to restart Mastodon processes manually after rebooting the Pi; (2) Torify all outgoing connections for additional privacy for your instance; (3) SD card image (a la mynode) for those who don't have time to learn linux system administration.
+Based on official [Mastodon instructions](https://docs.joinmastodon.org/admin/install/) - yet more paranoid, setup on Raspberry Pi, and made to work over Tor without SSL. This runbook will get you to a working instance, yet some work remains for this runbook: 
+
+1. systemd scripts - so you don't have to restart Mastodon processes manually after rebooting the Pi;
+2. Torify all outgoing connections for additional privacy for your instance;
+3. SD card image (a la mynode) for those who don't have time to learn linux system administration.
+
+Known bugs:
+1. Following external clearnet users seems to be broken. No errors when trying to follow. Yet the number "Followed" on the profile does not change. For one of the users I'm gettting the following warning error in the sidekiq service (this seems to be the only error or warning on the backend):
+```
+2021-02-06T16:25:51.361Z pid=9301 tid=3r35 WARN: {"context":"Job raised exception","job":{"retry":16,"queue":"push","dead":false,"class":"ActivityPub::DeliveryWorker","args":["{\"@context\":\"https://www.w3.org/ns/activitystreams\",\"id\":\"http://3vih3yegheqftg4pavy3v3vhf734zevwi3qbragl3uuc26cre7hk5hyd.onion/456fd875-c446-4990-949f-114c74165609\",\"type\":\"Follow\",\"actor\":\"http://3vih3yegheqftg4pavy3v3vhf734zevwi3qbragl3uuc26cre7hk5hyd.onion/users/admin4\",\"object\":\"https://x0f.org/users/orionwl\"}",4,"https://x0f.org/users/orionwl/inbox"],"jid":"e3e4f111f4763a56c3d126d3","created_at":1612627346.7334015,"enqueued_at":1612628750.4727335,"error_message":"https://x0f.org/users/orionwl/inbox returned code 401","error_class":"Mastodon::UnexpectedResponseError","failed_at":1612627347.4861543,"retry_count":5,"retried_at":1612627942.162155},"jobstr":"{\"retry\":16,\"queue\":\"push\",\"dead\":false,\"class\":\"ActivityPub::DeliveryWorker\",\"args\":[\"{\\\"@context\\\":\\\"https://www.w3.org/ns/activitystreams\\\",\\\"id\\\":\\\"http://3vih3yegheqftg4pavy3v3vhf734zevwi3qbragl3uuc26cre7hk5hyd.onion/456fd875-c446-4990-949f-114c74165609\\\",\\\"type\\\":\\\"Follow\\\",\\\"actor\\\":\\\"http://3vih3yegheqftg4pavy3v3vhf734zevwi3qbragl3uuc26cre7hk5hyd.onion/users/admin4\\\",\\\"object\\\":\\\"https://x0f.org/users/orionwl\\\"}\",4,\"https://x0f.org/users/orionwl/inbox\"],\"jid\":\"e3e4f111f4763a56c3d126d3\",\"created_at\":1612627346.7334015,\"enqueued_at\":1612628750.4727335,\"error_message\":\"https://x0f.org/users/orionwl/inbox returned code 401\",\"error_class\":\"Mastodon::UnexpectedResponseError\",\"failed_at\":1612627347.4861543,\"retry_count\":5,\"retried_at\":1612627942.162155}"}
+```
+
+
 
 Community announcement https://bitcoinhackers.org/web/statuses/105606424919493898
 
@@ -480,7 +492,7 @@ server {
   sendfile             on;
   client_max_body_size 80m;
 
-  root /home/mastodon/live/public;
+  root /mnt/mastodon/pi64/mnt/mastodon/live/public;
 
   gzip on;
   gzip_disable "msie6";
@@ -500,6 +512,7 @@ server {
   }
   
   location ~ ^/(emoji|packs|system/accounts/avatars|system/media_attachments/files) {
+    add_header Cache-Control "public, max-age=31536000, immutable";
     try_files $uri @proxy;
   }
 
