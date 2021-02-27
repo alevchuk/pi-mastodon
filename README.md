@@ -19,6 +19,10 @@ Known bugs:
 
 Community announcement https://bitcoinhackers.org/web/statuses/105606424919493898
 
+Uodates:
+- Feb 2021: Start9 EMABSSY now offers Mastodon in their app store: https://start9labs.medium.com/new-service-mastodon-9af10df5615
+- MAstodon update allows running HTTP over Tor (I haven't tested this, yet looks promissing): https://github.com/tootsuite/mastodon/pull/15666
+
 Table of contents
 =================
 
